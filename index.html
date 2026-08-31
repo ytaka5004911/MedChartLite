@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MedChart Lite - 電子カルテデモ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="brand">MedChart <span>Lite</span></div>
+      <small>電子カルテ・デモシステム</small>
+    </div>
+    <div class="top-actions">
+      <button id="newPatientBtn" class="primary">＋ 新規患者</button>
+      <button id="exportBtn">バックアップ書き出し</button>
+      <label class="import-label">バックアップ読込<input id="importInput" type="file" accept=".json"></label>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="search-wrap">
+        <input id="patientSearch" placeholder="患者名・IDを検索">
+      </div>
+      <div class="side-title">患者一覧 <span id="patientCount">0</span></div>
+      <div id="patientList" class="patient-list"></div>
+    </aside>
+
+    <main class="main">
+      <section id="emptyState" class="empty-state">
+        <div class="empty-icon">＋</div>
+        <h2>患者を選択してください</h2>
+        <p>左の患者一覧から選ぶか、「新規患者」から登録できます。</p>
+      </section>
+
+      <section id="chart" class="chart hidden">
+        <div class="patient-head">
+          <div>
+            <div class="patient-name-row">
+              <h1 id="patientName"></h1>
+              <span id="patientStatus" class="badge">通院中</span>
+            </div>
+            <div id="patientMeta" class="muted"></div>
+          </div>
+          <div class="patient-actions">
+            <button id="editPatientBtn">患者情報を編集</button>
+            <button id="deletePatientBtn" class="danger-outline">患者削除</button>
+          </div>
+        </div>
+
+        <nav class="tabs">
+          <button class="tab active" data-tab="overview">概要</button>
+          <button class="tab" data-tab="records">診療履歴</button>
+          <button class="tab" data-tab="newRecord">診療記録入力</button>
+        </nav>
+
+        <div id="tab-overview" class="tab-panel">
+          <div class="grid two">
+            <article class="card">
+              <div class="card-title">基本情報</div>
+              <dl class="info-grid" id="basicInfo"></dl>
+            </article>
+            <article class="card">
+              <div class="card-title">最新バイタル</div>
+              <div id="latestVitals" class="vitals"></div>
+            </article>
+          </div>
+          <article class="card">
+            <div class="card-title">最新の診療記録</div>
+            <div id="latestRecord"></div>
+          </article>
+        </div>
+
+        <div id="tab-records" class="tab-panel hidden">
+          <div class="section-head">
+            <div>
+              <h2>診療履歴</h2>
+              <p class="muted">保存された診療記録を新しい順に表示</p>
+            </div>
+            <button class="primary" id="quickNewRecord">＋ 診療記録を追加</button>
+          </div>
+          <div id="recordList"></div>
+        </div>
+
+        <div id="tab-newRecord" class="tab-panel hidden">
+          <div class="section-head">
+            <div>
+              <h2>診療記録入力</h2>
+              <p class="muted">保存すると履歴に追加されます。</p>
+            </div>
+          </div>
+          <form id="recordForm" class="form">
+            <div class="grid three">
+              <label>診療日<input type="date" id="visitDate" required></label>
+              <label>診療科<input id="department" placeholder="例：内科"></label>
+              <label>担当者<input id="clinician" placeholder="例：担当医"></label>
+            </div>
+
+            <div class="card form-card">
+              <div class="card-title">バイタル</div>
+              <div class="grid four">
+                <label>体温（℃）<input type="number" step="0.1" id="temp"></label>
+                <label>血圧・上<input type="number" id="bpSys"></label>
+                <label>血圧・下<input type="number" id="bpDia"></label>
+                <label>脈拍（/分）<input type="number" id="pulse"></label>
+              </div>
+            </div>
+
+            <div class="grid two">
+              <label>主訴<textarea id="chiefComplaint" rows="3" placeholder="今回の受診理由"></textarea></label>
+              <label>現病歴<textarea id="history" rows="3" placeholder="経過・患者からの申告"></textarea></label>
+              <label>所見<textarea id="findings" rows="4" placeholder="診察所見・検査所見"></textarea></label>
+              <label>評価・診断<textarea id="assessment" rows="4" placeholder="評価・診断"></textarea></label>
+              <label>方針・計画<textarea id="plan" rows="4" placeholder="今後の方針・フォロー"></textarea></label>
+              <label>メモ<textarea id="note" rows="4" placeholder="その他メモ"></textarea></label>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" id="clearRecordBtn">入力をクリア</button>
+              <button type="submit" class="primary">診療記録を保存</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="patientDialog">
+    <form method="dialog" id="patientForm" class="dialog-form">
+      <div class="dialog-head">
+        <h2 id="patientDialogTitle">新規患者</h2>
+        <button type="button" class="icon-btn" data-close="patientDialog">×</button>
+      </div>
+      <div class="grid two">
+        <label>患者ID<input id="pId" placeholder="自動採番可"></label>
+        <label>氏名<input id="pName" required></label>
+        <label>生年月日<input type="date" id="pBirth"></label>
+        <label>性別
+          <select id="pSex"><option value="">未選択</option><option>男性</option><option>女性</option><option>その他</option></select>
+        </label>
+        <label>電話<input id="pPhone" inputmode="tel"></label>
+        <label>ステータス
+          <select id="pStatus"><option>通院中</option><option>経過観察</option><option>終了</option></select>
+        </label>
+      </div>
+      <label>備考<textarea id="pNote" rows="3"></textarea></label>
+      <div class="form-actions">
+        <button type="button" data-close="patientDialog">キャンセル</button>
+        <button class="primary" type="submit">保存</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="recordDialog">
+    <div class="dialog-form">
+      <div class="dialog-head">
+        <h2>診療記録</h2>
+        <button type="button" class="icon-btn" data-close="recordDialog">×</button>
+      </div>
+      <div id="recordDetail"></div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
