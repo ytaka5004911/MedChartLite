@@ -146,7 +146,7 @@ case"small":mark(small);break;
 
 render();
 }
-
+window.create = create;
 function render(){
 const keys=keyboard.querySelector("#gk-keys");
 const title=keyboard.querySelector("#gk-mode");
