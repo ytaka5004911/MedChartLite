@@ -173,6 +173,7 @@
   <script src="app.js"></script>
   <script>
     (function(){
+    document.addEventListener("DOMContentLoaded", ()=>{
       create()
     const gojuonKeyboard = document.getElementById("gojuonKeyboard");
     
@@ -187,7 +188,7 @@ KeyboardSwitchingBtn.addEventListener("click", ()=>{
 
   KeyboardSwitchingTxt.textContent =
     gojuonKeyboard.style.display == "none" ? "通常" : "独自";
-});   })();
+});   }); })();
   </script>
 </body>
 </html>
