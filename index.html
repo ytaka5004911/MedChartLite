@@ -172,6 +172,9 @@
   <div id="toast" class="toast"></div>
   <script src="app.js"></script>
   <script>
+    (function(){
+    const gojuonKeyboard = document.getElementById("gojuonKeyboard");
+    
     gojuonKeyboard.style.display = "none";
 
 const KeyboardSwitchingBtn = document.getElementById("KeyboardSwitchingBtn");
@@ -183,8 +186,7 @@ KeyboardSwitchingBtn.addEventListener("click", ()=>{
 
   KeyboardSwitchingTxt.textContent =
     gojuonKeyboard.style.display == "none" ? "通常" : "独自";
-});
-
+});   })();
   </script>
 </body>
 </html>
