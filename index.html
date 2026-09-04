@@ -5,7 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MedChart Lite - 電子カルテデモ</title>
   <link rel="stylesheet" href="style.css">
-</head>
+  <script src="keybord.js"></script>
+  <script>
+    gojuonKeyboard.style.display = "none";
+
+const KeyboardSwitchingBtn = document.getElementById("KeyboardSwitchingBtn");
+const KeyboardSwitchingTxt = document.getElementById("KeyboardSwitchingTxt");
+
+KeyboardSwitchingBtn.addEventListener("click", ()=>{
+  gojuonKeyboard.style.display =
+    gojuonKeyboard.style.display == "none" ? "block" : "none";
+
+  KeyboardSwitchingTxt.textContent =
+    gojuonKeyboard.style.display == "none" ? "通常" : "独自";
+});
+
+  </script></head>
 <body>
   <header class="topbar">
     <div>
@@ -13,6 +28,8 @@
       <small>電子カルテ・デモシステム</small>
     </div>
     <div class="top-actions">
+      <button id="KeyboardSwitchingBtn">キーボード切り替え"</button>
+      <p id="KeyboardSwitchingTxt"></p>
       <button id="newPatientBtn" class="primary">＋ 新規患者</button>
       <button id="exportBtn">バックアップ書き出し</button>
       <label class="import-label">バックアップ読込<input id="importInput" type="file" accept=".json"></label>
