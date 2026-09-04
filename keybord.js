@@ -414,7 +414,10 @@ background:#ccc;
 `;
 
 document.head.appendChild(style);
-document.querySelectorAll('input, textarea, [contenteditable="true"]').forEach(el=>{
-  el.setAttribute('inputmode', 'none');
-});
+const editableTargets = document.querySelectorAll('input, textarea, [contenteditable="true"]');
+if (editableTargets.length > 0) {
+  editableTargets.forEach(el=>{
+    el.setAttribute('inputmode', 'none');
+  });
+}
 })();
