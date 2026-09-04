@@ -6,21 +6,7 @@
   <title>MedChart Lite - 電子カルテデモ</title>
   <link rel="stylesheet" href="style.css">
   <script src="keybord.js"></script>
-  <script>
-    gojuonKeyboard.style.display = "none";
-
-const KeyboardSwitchingBtn = document.getElementById("KeyboardSwitchingBtn");
-const KeyboardSwitchingTxt = document.getElementById("KeyboardSwitchingTxt");
-
-KeyboardSwitchingBtn.addEventListener("click", ()=>{
-  gojuonKeyboard.style.display =
-    gojuonKeyboard.style.display == "none" ? "block" : "none";
-
-  KeyboardSwitchingTxt.textContent =
-    gojuonKeyboard.style.display == "none" ? "通常" : "独自";
-});
-
-  </script></head>
+  </head>
 <body>
   <header class="topbar">
     <div>
@@ -182,5 +168,20 @@ KeyboardSwitchingBtn.addEventListener("click", ()=>{
 
   <div id="toast" class="toast"></div>
   <script src="app.js"></script>
+  <script>
+    gojuonKeyboard.style.display = "none";
+
+const KeyboardSwitchingBtn = document.getElementById("KeyboardSwitchingBtn");
+const KeyboardSwitchingTxt = document.getElementById("KeyboardSwitchingTxt");
+
+KeyboardSwitchingBtn.addEventListener("click", ()=>{
+  gojuonKeyboard.style.display =
+    gojuonKeyboard.style.display == "none" ? "block" : "none";
+
+  KeyboardSwitchingTxt.textContent =
+    gojuonKeyboard.style.display == "none" ? "通常" : "独自";
+});
+
+  </script>
 </body>
 </html>
