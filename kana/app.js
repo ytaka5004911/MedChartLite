@@ -100,7 +100,7 @@ async function showRecord(id){
     <div class="card"><div class="card-title">バイタル</div>
       たいおん ${esc(r.vitals.temp||"—")} ℃　／ けつあつ ${esc(r.vitals.bpSys||"—")}/${esc(r.vitals.bpDia||"—")} mmHg　／ みゃくはく ${esc(r.vitals.pulse||"—")} /ふん
     </div>
-    ${[['しゅそ',r.chiefComplaint],['げんびょうれき',r.history],['しょけん',r.findings],['ひょうか・しんだん',r.assessment],['ほうしん・けいかく',r.plan],['メモ',r.note]].map(([t,v])=>`<div class="card"><div class="card-title">${t}</div><div style="white-space:pre-wrap;line-height:1.7">${esc(v||"—")}</div></div>`).join("")}
+    ${[['かんじゃがいっていること',r.chiefComplaint],['げんびょうれき',r.history],['じょうたい',r.findings],['びょうめい',r.assessment],['くすり',r.plan],['メモ',r.note]].map(([t,v])=>`<div class="card"><div class="card-title">${t}</div><div style="white-space:pre-wrap;line-height:1.7">${esc(v||"—")}</div></div>`).join("")}
     <div class="form-actions"><button class="danger-outline" id="deleteRecordBtn">このきろくをさくじょ</button></div>`;
   $("recordDialog").showModal();
   $("deleteRecordBtn").onclick=async()=>{if(confirm("このしんりょうきろくをさくじょしますか？")){await del("records",id);$("recordDialog").close();await renderChart();toast("しんりょうきろくをさくじょしました")}};
