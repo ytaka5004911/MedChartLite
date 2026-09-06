@@ -65,12 +65,12 @@ async function renderChart(){
   $("patientStatus").textContent=p.status||"";
   $("patientMeta").textContent=`${p.id}　${p.birth||"せいねんがっぴみとうろく"}　${p.sex||"せいべつみとうろく"}`;
   $("basicInfo").innerHTML=`
-    <dt>かんじゃID</dt><dd>${esc(p.id)}</dd>
-    <dt>しめい</dt><dd>${esc(p.name)}</dd>
-    <dt>せいねんがっぴ</dt><dd>${esc(p.birth||"—")}</dd>
+    <dt>ID</dt><dd>${esc(p.id)}</dd>
+    <dt>なまえ</dt><dd>${esc(p.name)}</dd>
+    <dt>うまれたひ</dt><dd>${esc(p.birth||"—")}</dd>
     <dt>せいべつ</dt><dd>${esc(p.sex||"—")}</dd>
     <dt>でんわ</dt><dd>${esc(p.phone||"—")}</dd>
-    <dt>びこう</dt><dd>${esc(p.note||"—")}</dd>`;
+    <dt>そのた</dt><dd>${esc(p.note||"—")}</dd>`;
   const rs=(await getAll("records")).filter(r=>r.patientId===currentPatientId).sort((a,b)=>b.visitDate.localeCompare(a.visitDate)||b.createdAt.localeCompare(a.createdAt));
   const r=rs[0];
   $("latestVitals").innerHTML=r?`
@@ -86,10 +86,10 @@ function recordHTML(r,latest){
   return `<article class="record-card">
     <div class="record-head"><div><strong>${esc(r.visitDate)}</strong>　${esc(r.department||"しんりょうかみせってい")}</div><button data-record="${esc(r.id)}">${latest?"しょうさい":"ひらく"}</button></div>
     <div class="record-body"><div class="record-grid">
-      <div class="record-field"><h4>しゅそ</h4><p>${esc(r.chiefComplaint||"—")}</p></div>
-      <div class="record-field"><h4>ひょうか・しんだん</h4><p>${esc(r.assessment||"—")}</p></div>
-      <div class="record-field"><h4>しょけん</h4><p>${esc(r.findings||"—")}</p></div>
-      <div class="record-field"><h4>ほうしん・けいかく</h4><p>${esc(r.plan||"—")}</p></div>
+      <div class="record-field"><h4>かんじゃがいっていること</h4><p>${esc(r.chiefComplaint||"—")}</p></div>
+      <div class="record-field"><h4>びょいめい</h4><p>${esc(r.assessment||"—")}</p></div>
+      <div class="record-field"><h4>じょうたい</h4><p>${esc(r.findings||"—")}</p></div>
+      <div class="record-field"><h4>くすり</h4><p>${esc(r.plan||"—")}</p></div>
     </div></div>
   </article>`;
 }
