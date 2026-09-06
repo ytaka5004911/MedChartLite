@@ -116,12 +116,12 @@
             </div>
 
             <div class="grid two">
-              <label>しゅそ<textarea id="chiefComplaint" rows="3" placeholder="こんかいのじゅしんりゆう"></textarea></label>
-              <label>げんびょうれき<textarea id="history" rows="3" placeholder="けいか・かんじゃからのしんこく"></textarea></label>
-              <label>しょけん<textarea id="findings" rows="4" placeholder="しんさつしょけん・けんさしょけん"></textarea></label>
-              <label>ひょうか・しんだん<textarea id="assessment" rows="4" placeholder="ひょうか・しんだん"></textarea></label>
-              <label>ほうしん・けいかく<textarea id="plan" rows="4" placeholder="こんごのほうしん・フォロー"></textarea></label>
-              <label>メモ<textarea id="note" rows="4" placeholder="そのたメモ"></textarea></label>
+              <label>かんじゃがいっていること<textarea id="chiefComplaint" rows="3" placeholder="かんじゃがいっていること"></textarea></label>
+              <label>げんびょうれき<textarea id="history" rows="3" placeholder=""></textarea></label>
+              <label>じょうたい<textarea id="findings" rows="4" placeholder="じょうたい"></textarea></label>
+              <label>けっか<textarea id="assessment" rows="4" placeholder="けっか"></textarea></label>
+              <label>くすり<textarea id="plan" rows="4" placeholder="くすり"></textarea></label>
+              <label>メモ<textarea id="note" rows="4" placeholder="メモ"></textarea></label>
             </div>
 
             <div class="form-actions">
@@ -141,9 +141,9 @@
         <button type="button" class="icon-btn" data-close="patientDialog">×</button>
       </div>
       <div class="grid two">
-        <label>かんじゃID<input id="pId" placeholder="じどうさいばんか"></label>
-        <label>しめい<input id="pName" required></label>
-        <label>せいねんがっぴ<input type="date" id="pBirth"></label>
+        <label>ID<input id="pId" placeholder="じどうさいばんか"></label>
+        <label>なまえ<input id="pName" required></label>
+        <label>うまれたひ<input type="date" id="pBirth"></label>
         <label>せいべつ
           <select id="pSex"><option value="">みせんたく</option><option>だんせい</option><option>じょせい</option><option>そのた</option></select>
         </label>
@@ -152,7 +152,7 @@
           <select id="pStatus"><option>つういんちゅう</option><option>けいかかんさつ</option><option>しゅうりょう</option></select>
         </label>
       </div>
-      <label>びこう<textarea id="pNote" rows="3"></textarea></label>
+      <label>そのた<textarea id="pNote" rows="3"></textarea></label>
       <div class="form-actions">
         <button type="button" data-close="patientDialog">キャンセル</button>
         <button class="primary" type="submit">ほぞん</button>
