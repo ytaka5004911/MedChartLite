@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MedChart Lite - 電子カルテデモ</title>
   <link rel="stylesheet" href="style.css">
-  <script src="keybord.js"></script>
   </head>
 <body>
   <header class="topbar">
@@ -15,8 +14,6 @@
     </div>
     <div class="top-actions">
       <a href="https://ytaka5004911.github.io/ytaka5004911/index.html">ホームページに戻る</a>
-      <button id="KeyboardSwitchingBtn">キーボード切り替え</button>
-      <p id="KeyboardSwitchingTxt"></p>
       <button id="newPatientBtn" class="primary">＋ 新規患者</button>
       <button id="exportBtn">バックアップ書き出し</button>
       <label class="import-label">バックアップ読込<input id="importInput" type="file" accept=".json"></label>
@@ -169,24 +166,5 @@
 
   <div id="toast" class="toast"></div>
   <script src="app.js"></script>
-  <script>
-    (function(){
-    document.addEventListener("DOMContentLoaded", ()=>{
-      create()
-    const gojuonKeyboard = document.getElementById("gojuonKeyboard");
-    
-    gojuonKeyboard.style.display = "none";
-
-const KeyboardSwitchingBtn = document.getElementById("KeyboardSwitchingBtn");
-const KeyboardSwitchingTxt = document.getElementById("KeyboardSwitchingTxt");
-
-KeyboardSwitchingBtn.addEventListener("click", ()=>{
-  gojuonKeyboard.style.display =
-    gojuonKeyboard.style.display == "none" ? "block" : "none";
-
-  KeyboardSwitchingTxt.textContent =
-    gojuonKeyboard.style.display == "none" ? "通常" : "独自";
-});   }); })();
-  </script>
 </body>
 </html>
