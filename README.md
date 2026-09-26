@@ -270,9 +270,9 @@ MedChart Liteはデモ用途を想定したWebアプリです。
 GitHub Pagesなどに公開することで、ブラウザからMedChart Liteを利用できます。
 
 ```text
-https://ytaka5004911.github.io/ytaka5004911/
+https://ytaka5004911.github.io/MedChartLite/index.html
 ```
-
+<https://ytaka500491.github.io/MedChartLite/>
 ---
 
 ## 🛠️ 使用技術
